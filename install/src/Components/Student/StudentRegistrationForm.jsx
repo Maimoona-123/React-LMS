@@ -109,7 +109,7 @@ function StudentRegistrationForm() {
   </RadioGroup>
   <br />
   <br />
-  <Button  type='submit'  fullWidth style={{backgroundColor:'green',color:'white',width:'500%'}}>Register</Button>
+  <Button  type='submit'   style={{backgroundColor:'purple',color:'white',width:'200%'}}>Register</Button>
   
 </FormControl>
 
@@ -126,32 +126,3 @@ function StudentRegistrationForm() {
 
 export default StudentRegistrationForm;
 
-
-// return (
-//     <div>
-//       <h2>Student Registration Form</h2>
-//       <form onSubmit={handleSubmit}>
-//         <div>
-//           <label>
-//             Name:
-//             <input
-//               type="text"
-//               value={studentName}
-//               onChange={(e) => setStudentName(e.target.value)}
-//             />
-//           </label>
-//         </div>
-//         <div>
-//           <label>
-//             Age:
-//             <input
-//               type="number"
-//               value={studentAge}
-//               onChange={(e) => setStudentAge(e.target.value)}
-//             />
-//           </label>
-//         </div>
-//         <button type="submit">Register</button>
-//       </form>
-//     </div>
-//   );

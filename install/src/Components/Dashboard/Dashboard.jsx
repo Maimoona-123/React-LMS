@@ -13,11 +13,28 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import { Link } from 'react-router-dom';
-import { Menu, MenuItem } from '@mui/material';
+import { Button, Menu, MenuItem } from '@mui/material';
 import { PiStudentFill } from 'react-icons/pi';
 import { FaAddressBook, FaChalkboardTeacher, FaMoneyBillAlt, FaSchool } from 'react-icons/fa';
 import { GrNotes } from 'react-icons/gr';
 import { SiGoogleclassroom } from 'react-icons/si';
+// import StudentRegistrationForm from '../Student/StudentRegistrationForm';
+// import StudentList from '../Student/StudentListForm';
+// import TeacherRegistration from '../Teacher/TeacherRegistration';
+// import TeacherList from '../Teacher/TeacherList';
+// import SubjectAdd from '../Subject/SubjectAdd';
+// import SubjectList from '../Subject/Subjectlist'
+// import Syllabusform from '../Syllabus/Syllabusform';
+// import Syllabuslist from '../Syllabus/Syllabuslist'
+// import Schoolstd from '../School/SchoolStd';
+// import Schoolteache from '../School/Schoolteache'
+// import Classform from '../Class/ClassForm';
+// import ClassList from '../Class/ClassList'
+// import FeeStructure from '../Fees/FeeStructure';
+// import FeeSubmission from '../Fees/FeeSubmission';
+// import FeeVoucher from '../Fees/FeeVOucher';
+// import AdmissionForm from '../Admission'
+
 
 
 // Define drawer width
@@ -27,48 +44,48 @@ export default function Dashboard() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mailAnchorEl, setMailAnchorEl] = React.useState(null);
   const [subjectAnchorEl, setsubjectAnchorEl] = React.useState(null)
-   const [syllabusAnchorEl,setsyllabusAnchorEl] = React.useState(null)
-   const [schoolAnchorEl, setschoolAnchorEl] = React.useState(null)
-   const [classAnchorEl,setclassAnchorEl]  = React.useState(null);
-   const [feesAnchorEl,setfeesAnchorEl] = React.useState(null);
-   const [addmissionformAnchorEl,setaddmissionformAnchorEl] =React.useState(null)
+  const [syllabusAnchorEl, setsyllabusAnchorEl] = React.useState(null)
+  const [schoolAnchorEl, setschoolAnchorEl] = React.useState(null)
+  const [classAnchorEl, setclassAnchorEl] = React.useState(null);
+  const [feesAnchorEl, setfeesAnchorEl] = React.useState(null);
+  const [addmissionformAnchorEl, setaddmissionformAnchorEl] = React.useState(null)
 
-   
+
   const open = Boolean(anchorEl);
   const mailOpen = Boolean(mailAnchorEl);
   const subjectOpen = Boolean(subjectAnchorEl);
   const syllabusOpen = Boolean(syllabusAnchorEl);
   const schoolOpen = Boolean(schoolAnchorEl)
-  const classOpen = Boolean(classAnchorEl) 
+  const classOpen = Boolean(classAnchorEl)
   const feesOpen = Boolean(feesAnchorEl)
   const addmissionOpen = Boolean(addmissionformAnchorEl)
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-   
+
   const handleMailClick = (event) => {
     setMailAnchorEl(event.currentTarget);
   };
-  const handlesubjectclick = (event) =>{
+  const handlesubjectclick = (event) => {
     setsubjectAnchorEl(event.currentTarget)
   }
-   const handlesyllabusclick = (event)=>{
+  const handlesyllabusclick = (event) => {
     setsyllabusAnchorEl(event.currentTarget)
-   }
-   const handleschoolclick = (event)=>{
+  }
+  const handleschoolclick = (event) => {
     setschoolAnchorEl(event.currentTarget)
-   }
-   const handleclassclick = (event)=>{
+  }
+  const handleclassclick = (event) => {
     setclassAnchorEl(event.currentTarget)
-   }
-   const handlefeeclick = (event)=>{
+  }
+  const handlefeeclick = (event) => {
     setfeesAnchorEl(event.currentTarget)
-   }
-   const handleaddmissionclick= (event)=>{
+  }
+  const handleaddmissionclick = (event) => {
     setaddmissionformAnchorEl(event.currentTarget)
-   } 
-   
+  }
+
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -85,12 +102,18 @@ export default function Dashboard() {
       <CssBaseline />
       <AppBar
         position="fixed"
-        sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
+        sx={{
+          width: "100%",  // Full width
+          zIndex: (theme) => theme.zIndex.drawer + 1,  // Ensures AppBar is above the drawer
+          color: "white",
+          background: "linear-gradient(to right, purple, violet ,pink)"
+        }}
       >
-        <Toolbar>
+        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
           <Typography variant="h6" noWrap component="div">
-          Educon's Learning System
+            Learning Managment System
           </Typography>
+          <Button variant='contained' sx={{ backgroundColor: "white", color: "purple" }}>SignOut</Button>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -100,6 +123,8 @@ export default function Dashboard() {
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
+            color: 'white',
+            background: 'linear-gradient(to right, purple, pink)'
           },
         }}
         variant="permanent"
@@ -112,7 +137,7 @@ export default function Dashboard() {
           <ListItem disablePadding>
             <ListItemButton onClick={handleClick}>
               <ListItemIcon>
-              <PiStudentFill />
+                <PiStudentFill />
               </ListItemIcon>
               <ListItemText primary="Student" />
             </ListItemButton>
@@ -134,7 +159,7 @@ export default function Dashboard() {
           <ListItem disablePadding>
             <ListItemButton onClick={handleMailClick}>
               <ListItemIcon>
-              <FaChalkboardTeacher />
+                <FaChalkboardTeacher />
               </ListItemIcon>
               <ListItemText primary="Teacher" />
             </ListItemButton>
@@ -150,7 +175,7 @@ export default function Dashboard() {
                 Teacher Regestration
               </MenuItem>
               <MenuItem onClick={handleClose} component={Link} to="/teacher-list">
-               Teacher List
+                Teacher List
               </MenuItem>
             </Menu>
           </ListItem>
@@ -160,7 +185,7 @@ export default function Dashboard() {
           <ListItem disablePadding>
             <ListItemButton onClick={handlesubjectclick}>
               <ListItemIcon>
-              <FaAddressBook />
+                <FaAddressBook />
               </ListItemIcon>
               <ListItemText primary="Subject" />
             </ListItemButton>
@@ -176,7 +201,7 @@ export default function Dashboard() {
                 Subject Add
               </MenuItem>
               <MenuItem onClick={handleClose} component={Link} to="/subjectlist">
-               Subject List
+                Subject List
               </MenuItem>
             </Menu>
           </ListItem>
@@ -185,7 +210,7 @@ export default function Dashboard() {
           <ListItem disablePadding>
             <ListItemButton onClick={handlesyllabusclick}>
               <ListItemIcon>
-              <GrNotes />
+                <GrNotes />
               </ListItemIcon>
               <ListItemText primary="Syllabus" />
             </ListItemButton>
@@ -198,10 +223,10 @@ export default function Dashboard() {
                 Inbox
               </MenuItem> */}
               <MenuItem onClick={handleClose} component={Link} to="/syllabusform">
-               Syllabus Form
+                Syllabus Form
               </MenuItem>
               <MenuItem onClick={handleClose} component={Link} to="/syllabuslist">
-               Syllabus List
+                Syllabus List
               </MenuItem>
             </Menu>
           </ListItem>
@@ -210,7 +235,7 @@ export default function Dashboard() {
           <ListItem disablePadding>
             <ListItemButton onClick={handleschoolclick}>
               <ListItemIcon>
-              <FaSchool />
+                <FaSchool />
               </ListItemIcon>
               <ListItemText primary="School" />
             </ListItemButton>
@@ -223,15 +248,15 @@ export default function Dashboard() {
                 Inbox
               </MenuItem> */}
               <MenuItem onClick={handleClose} component={Link} to="/schoolstuddent">
-               Student Regestration 
+                Student Regestration
               </MenuItem>
               <MenuItem onClick={handleClose} component={Link} to="/schoolteacher">
-               Teacher Regestration
+                Teacher Regestration
               </MenuItem>
             </Menu>
           </ListItem>
           {/* class drop down */}
-           
+
           <ListItem disablePadding>
             <ListItemButton onClick={handleclassclick}>
               <ListItemIcon>
@@ -248,10 +273,10 @@ export default function Dashboard() {
                 Inbox
               </MenuItem> */}
               <MenuItem onClick={handleClose} component={Link} to="/classform">
-              Class Form
+                Class Form
               </MenuItem>
               <MenuItem onClick={handleClose} component={Link} to="/classlist">
-               Class List
+                Class List
               </MenuItem>
             </Menu>
           </ListItem>
@@ -273,13 +298,13 @@ export default function Dashboard() {
                 Inbox
               </MenuItem> */}
               <MenuItem onClick={handleClose} component={Link} to="/feestructure">
-             Fee Structure
+                Fee Structure
               </MenuItem>
               <MenuItem onClick={handleClose} component={Link} to="/voucher">
-              Fee Voucher
+                Fee Voucher
               </MenuItem>
               <MenuItem onClick={handleClose} component={Link} to="/feesubmission">
-               Fee Submission
+                Fee Submission
               </MenuItem>
             </Menu>
           </ListItem>
@@ -300,307 +325,26 @@ export default function Dashboard() {
                 Inbox
               </MenuItem> */}
               <MenuItem onClick={handleClose} component={Link} to="/addmissionform">
-             Addmission Form
+                Addmission Form
               </MenuItem>
-             
-              
+
+
             </Menu>
           </ListItem>
-          
-          
-          
+
+
+
 
         </List>
         <Divider />
       </Drawer>
       <Box
         component="main"
-        sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
+        sx={{ display: "flex", flexDirection: "row", justifyContent: "center", height: "100vh", maxWidth: "80%" }}
       >
-        <Toolbar />
-        
+        {/* Your content here */}
       </Box>
     </Box>
   );
 }
-
-
-
-
-// import * as React from 'react';
-// import Box from '@mui/material/Box';
-// import Drawer from '@mui/material/Drawer';
-// import CssBaseline from '@mui/material/CssBaseline';
-// import AppBar from '@mui/material/AppBar';
-// import Toolbar from '@mui/material/Toolbar';
-// import List from '@mui/material/List';
-// import Typography from '@mui/material/Typography';
-// import Divider from '@mui/material/Divider';
-// import ListItem from '@mui/material/ListItem';
-// import ListItemButton from '@mui/material/ListItemButton';
-// import ListItemIcon from '@mui/material/ListItemIcon';
-// import ListItemText from '@mui/material/ListItemText';
-// import { Link } from 'react-router-dom';
-// import { Menu, MenuItem } from '@mui/material';
-// import { PiStudentFill } from 'react-icons/pi';
-// import { FaAddressBook, FaChalkboardTeacher, FaMoneyBillAlt, FaSchool } from 'react-icons/fa';
-// import { GrNotes } from 'react-icons/gr';
-// import { SiGoogleclassroom } from 'react-icons/si';
-
-// const drawerWidth = 240;
-
-// export default function Dashboard() {
-//   const [anchorEl, setAnchorEl] = React.useState(null);
-//   const [mailAnchorEl, setMailAnchorEl] = React.useState(null);
-//   const [subjectAnchorEl, setsubjectAnchorEl] = React.useState(null);
-//   const [syllabusAnchorEl, setsyllabusAnchorEl] = React.useState(null);
-//   const [schoolAnchorEl, setschoolAnchorEl] = React.useState(null);
-//   const [classAnchorEl, setclassAnchorEl] = React.useState(null);
-//   const [feesAnchorEl, setfeesAnchorEl] = React.useState(null);
-//   const [addmissionformAnchorEl, setaddmissionformAnchorEl] = React.useState(null);
-
-//   const open = Boolean(anchorEl);
-//   const mailOpen = Boolean(mailAnchorEl);
-//   const subjectOpen = Boolean(subjectAnchorEl);
-//   const syllabusOpen = Boolean(syllabusAnchorEl);
-//   const schoolOpen = Boolean(schoolAnchorEl);
-//   const classOpen = Boolean(classAnchorEl);
-//   const feesOpen = Boolean(feesAnchorEl);
-//   const addmissionOpen = Boolean(addmissionformAnchorEl);
-
-//   const handleClick = (event) => {
-//     setAnchorEl(event.currentTarget);
-//   };
-
-//   const handleMailClick = (event) => {
-//     setMailAnchorEl(event.currentTarget);
-//   };
-
-//   const handlesubjectclick = (event) => {
-//     setsubjectAnchorEl(event.currentTarget);
-//   };
-//   const handlesyllabusclick = (event) => {
-//     setsyllabusAnchorEl(event.currentTarget);
-//   };
-//   const handleschoolclick = (event) => {
-//     setschoolAnchorEl(event.currentTarget);
-//   };
-//   const handleclassclick = (event) => {
-//     setclassAnchorEl(event.currentTarget);
-//   };
-//   const handlefeeclick = (event) => {
-//     setfeesAnchorEl(event.currentTarget);
-//   };
-//   const handleaddmissionclick = (event) => {
-//     setaddmissionformAnchorEl(event.currentTarget);
-//   };
-
-//   const handleClose = () => {
-//     setAnchorEl(null);
-//     setMailAnchorEl(null);
-//     setsubjectAnchorEl(null);
-//     setsyllabusAnchorEl(null);
-//     setschoolAnchorEl(null);
-//     setclassAnchorEl(null);
-//     setfeesAnchorEl(null);
-//   };
-
-//   return (
-//     <Box sx={{ display: 'flex' }}>
-//       <CssBaseline />
-//       <AppBar
-//         position="fixed"
-//         sx={{
-//           width: `calc(100% - ${drawerWidth}px)`,
-//           ml: `${drawerWidth}px`,
-//           backgroundColor: '#34495e',
-//           boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-//         }}
-//       >
-//         <Toolbar sx={{ justifyContent: 'center', padding: '16px' }}>
-//           <Typography variant="h6" noWrap component="div" sx={{ color: '#ecf0f1', fontWeight: 'bold' }}>
-//             Educon's Learning System
-//           </Typography>
-//         </Toolbar>
-//       </AppBar>
-
-//       <Drawer
-//         sx={{
-//           width: drawerWidth,
-//           flexShrink: 0,
-//           '& .MuiDrawer-paper': {
-//             width: drawerWidth,
-//             boxSizing: 'border-box',
-//             backgroundColor: '#2c3e50',
-//             color: '#ecf0f1',
-//             paddingTop: '16px',
-//             boxShadow: '4px 0 6px rgba(0, 0, 0, 0.1)',
-//           },
-//         }}
-//         variant="permanent"
-//         anchor="left"
-//       >
-//         <Toolbar />
-//         <Divider sx={{ borderColor: '#7f8c8d', marginBottom: '16px' }} />
-//         <List>
-//           {/* Student Dropdown */}
-//           <ListItem disablePadding>
-//             <ListItemButton onClick={handleClick}>
-//               <ListItemIcon sx={{ color: '#ecf0f1' }}>
-//                 <PiStudentFill />
-//               </ListItemIcon>
-//               <ListItemText primary="Student" sx={{ color: '#ecf0f1' }} />
-//             </ListItemButton>
-//             <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-//               <MenuItem onClick={handleClose} component={Link} to="/student-registration">
-//                 Student Registration Form
-//               </MenuItem>
-//               <MenuItem onClick={handleClose} component={Link} to="/student-list">
-//                 Student List Form
-//               </MenuItem>
-//             </Menu>
-//           </ListItem>
-
-//           {/* Teacher Dropdown */}
-//           <ListItem disablePadding>
-//             <ListItemButton onClick={handleMailClick}>
-//               <ListItemIcon sx={{ color: '#ecf0f1' }}>
-//                 <FaChalkboardTeacher />
-//               </ListItemIcon>
-//               <ListItemText primary="Teacher" sx={{ color: '#ecf0f1' }} />
-//             </ListItemButton>
-//             <Menu anchorEl={mailAnchorEl} open={mailOpen} onClose={handleClose}>
-//               <MenuItem onClick={handleClose} component={Link} to="/teacher-regestration">
-//                 Teacher Registration
-//               </MenuItem>
-//               <MenuItem onClick={handleClose} component={Link} to="/teacher-list">
-//                 Teacher List
-//               </MenuItem>
-//             </Menu>
-//           </ListItem>
-
-//           {/* Subject Dropdown */}
-//           <ListItem disablePadding>
-//             <ListItemButton onClick={handlesubjectclick}>
-//               <ListItemIcon sx={{ color: '#ecf0f1' }}>
-//                 <FaAddressBook />
-//               </ListItemIcon>
-//               <ListItemText primary="Subject" sx={{ color: '#ecf0f1' }} />
-//             </ListItemButton>
-//             <Menu anchorEl={subjectAnchorEl} open={subjectOpen} onClose={handleClose}>
-//               <MenuItem onClick={handleClose} component={Link} to="/subjectadd">
-//                 Subject Add
-//               </MenuItem>
-//               <MenuItem onClick={handleClose} component={Link} to="/subjectlist">
-//                 Subject List
-//               </MenuItem>
-//             </Menu>
-//           </ListItem>
-
-//           {/* Syllabus Dropdown */}
-//           <ListItem disablePadding>
-//             <ListItemButton onClick={handlesyllabusclick}>
-//               <ListItemIcon sx={{ color: '#ecf0f1' }}>
-//                 <GrNotes />
-//               </ListItemIcon>
-//               <ListItemText primary="Syllabus" sx={{ color: '#ecf0f1' }} />
-//             </ListItemButton>
-//             <Menu anchorEl={syllabusAnchorEl} open={syllabusOpen} onClose={handleClose}>
-//               <MenuItem onClick={handleClose} component={Link} to="/syllabusform">
-//                 Syllabus Form
-//               </MenuItem>
-//               <MenuItem onClick={handleClose} component={Link} to="/syllabuslist">
-//                 Syllabus List
-//               </MenuItem>
-//             </Menu>
-//           </ListItem>
-
-//           {/* School Dropdown */}
-//           <ListItem disablePadding>
-//             <ListItemButton onClick={handleschoolclick}>
-//               <ListItemIcon sx={{ color: '#ecf0f1' }}>
-//                 <FaSchool />
-//               </ListItemIcon>
-//               <ListItemText primary="School" sx={{ color: '#ecf0f1' }} />
-//             </ListItemButton>
-//             <Menu anchorEl={schoolAnchorEl} open={schoolOpen} onClose={handleClose}>
-//               <MenuItem onClick={handleClose} component={Link} to="/schoolstuddent">
-//                 Student Registration
-//               </MenuItem>
-//               <MenuItem onClick={handleClose} component={Link} to="/schoolteacher">
-//                 Teacher Registration
-//               </MenuItem>
-//             </Menu>
-//           </ListItem>
-
-//           {/* Class Dropdown */}
-//           <ListItem disablePadding>
-//             <ListItemButton onClick={handleclassclick}>
-//               <ListItemIcon sx={{ color: '#ecf0f1' }}>
-//                 <SiGoogleclassroom />
-//               </ListItemIcon>
-//               <ListItemText primary="Class" sx={{ color: '#ecf0f1' }} />
-//             </ListItemButton>
-//             <Menu anchorEl={classAnchorEl} open={classOpen} onClose={handleClose}>
-//               <MenuItem onClick={handleClose} component={Link} to="/classform">
-//                 Class Form
-//               </MenuItem>
-//               <MenuItem onClick={handleClose} component={Link} to="/classlist">
-//                 Class List
-//               </MenuItem>
-//             </Menu>
-//           </ListItem>
-
-//           {/* Fee Dropdown */}
-//           <ListItem disablePadding>
-//             <ListItemButton onClick={handlefeeclick}>
-//               <ListItemIcon sx={{ color: '#ecf0f1' }}>
-//                 <FaMoneyBillAlt />
-//               </ListItemIcon>
-//               <ListItemText primary="Fees" sx={{ color: '#ecf0f1' }} />
-//             </ListItemButton>
-//             <Menu anchorEl={feesAnchorEl} open={feesOpen} onClose={handleClose}>
-//               <MenuItem onClick={handleClose} component={Link} to="/feestructure">
-//                 Fee Structure
-//               </MenuItem>
-//               <MenuItem onClick={handleClose} component={Link} to="/voucher">
-//                 Fee Voucher
-//               </MenuItem>
-//               <MenuItem onClick={handleClose} component={Link} to="/feesubmission">
-//                 Fee Submission
-//               </MenuItem>
-//             </Menu>
-//           </ListItem>
-
-//           {/* Admission Dropdown */}
-//           <ListItem disablePadding>
-//             <ListItemButton onClick={handleaddmissionclick}>
-//               <ListItemIcon sx={{ color: '#ecf0f1' }}>
-//                 <FaAddressBook />
-//               </ListItemIcon>
-//               <ListItemText primary="Admission" sx={{ color: '#ecf0f1' }} />
-//             </ListItemButton>
-//             <Menu anchorEl={addmissionformAnchorEl} open={addmissionOpen} onClose={handleClose}>
-//               <MenuItem onClick={handleClose} component={Link} to="/addmissionform">
-//                 Admission Form
-//               </MenuItem>
-//             </Menu>
-//           </ListItem>
-//         </List>
-//         <Divider sx={{ borderColor: '#7f8c8d' }} />
-//       </Drawer>
-
-//       <Box
-//         component="main"
-//         sx={{
-//           flexGrow: 1,
-//           bgcolor: '#ecf0f1',
-//           // Removed padding (p) and box shadow (boxShadow)
-//         }}
-//       >
-//         <Toolbar />
-//       </Box>
-//     </Box>
-//   );
-// }
 

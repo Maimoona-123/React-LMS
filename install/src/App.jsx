@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 import './App.css'
 import Login from './Components/Login/Login'
 import SignUp from './Components/Signup/Signup';
+// import { Dashboard } from '@mui/icons-material';
 import Dashboard from './Components/Dashboard/Dashboard';
 import { StudentProvider } from './Components/Student/StudentContext';
 import StudentRegistrationForm from './Components/Student/StudentRegistrationForm';
@@ -26,42 +27,57 @@ import AdmissionForm from './Components/Admission/Addmissionform';
 
 function App() {
 
- 
+
 
   return (
     <>
-  
-   <Routes>
-    <Route  path='/' element={<SignUp/>}/>
-    <Route path='/login' element={<Login/>}/>
-    </Routes> 
 
-    <StudentProvider>
       <Routes>
-        <Route path='/dashboard' element={<Dashboard/>}/>
-        <Route path='/student-registration' element={<StudentRegistrationForm/>}/>
-        <Route path='/student-list' element={<StudentListForm/>}/>
-        <Route path='/teacher-regestration' element={<TeacherRegistration/>} />
-        <Route path='/teacher-list' element={<TeacherList/>}/>
-        <Route path='/subjectadd' element={<SubjectAdd/>}/>
-        <Route path='/subjectlist' element={<SubjectList/>}/>
-        <Route path='/syllabusform' element={<Syllabusform/>}/>
-        <Route path='/syllabuslist' element={<Syllabuslist/>}/>
-        <Route path='/schoolstuddent' element={<Schoolstd/>}/>
-        <Route path='/schoolteacher' element={<Schoolteache/>}/>
-        <Route path='/classform' element={<Classform/>}/>
-        <Route path='/classlist' element={<ClassList/>}/>
-        <Route path='/feestructure' element={<FeeStructure/>}/>
-        <Route path='/feesubmission' element={<FeeSubmission/>}/>
-        <Route path='/voucher' element={<FeeVoucher/>}/>
-        <Route path='/addmissionform' element={<AdmissionForm/>}/>
-
-
+        <Route path='/' element={<SignUp />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/student-registration' element={<StudentRegistrationForm />} />
+        <Route path='/student-list' element={<StudentListForm />} />
+        <Route path='/teacher-regestration' element={<TeacherRegistration />} />
+        <Route path='/teacher-list' element={<TeacherList />} />
+        <Route path='/subjectadd' element={<SubjectAdd />} />
+        <Route path='/subjectlist' element={<SubjectList />} />
+        <Route path='/syllabusform' element={<Syllabusform />} />
+        <Route path='/syllabuslist' element={<Syllabuslist />} />
+        <Route path='/schoolstuddent' element={<Schoolstd />} />
+        <Route path='/schoolteacher' element={<Schoolteache />} />
+        <Route path='/classform' element={<Classform />} />
+        <Route path='/classlist' element={<ClassList />} />
+        <Route path='/feestructure' element={<FeeStructure />} />
+        <Route path='/feesubmission' element={<FeeSubmission />} />
+        <Route path='/voucher' element={<FeeVoucher />} />
+        <Route path='/addmissionform' element={<AdmissionForm />} />
       </Routes>
-    </StudentProvider>
-      
-    
-    
+
+      {/* <StudentProvider>
+        <Routes>
+          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/student-registration' element={<StudentRegistrationForm />} />
+          <Route path='/student-list' element={<StudentListForm />} />
+          <Route path='/teacher-regestration' element={<TeacherRegistration />} />
+          <Route path='/teacher-list' element={<TeacherList />} />
+          <Route path='/subjectadd' element={<SubjectAdd />} />
+          <Route path='/subjectlist' element={<SubjectList />} />
+          <Route path='/syllabusform' element={<Syllabusform />} />
+          <Route path='/syllabuslist' element={<Syllabuslist />} />
+          <Route path='/schoolstuddent' element={<Schoolstd />} />
+          <Route path='/schoolteacher' element={<Schoolteache />} />
+          <Route path='/classform' element={<Classform />} />
+          <Route path='/classlist' element={<ClassList />} />
+          <Route path='/feestructure' element={<FeeStructure />} />
+          <Route path='/feesubmission' element={<FeeSubmission />} />
+          <Route path='/voucher' element={<FeeVoucher />} />
+          <Route path='/addmissionform' element={<AdmissionForm />} />
+        </Routes>
+      </StudentProvider> */}
+
+
+
     </>
   )
 }
