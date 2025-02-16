@@ -134,6 +134,8 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import { Link } from 'react-router-dom';
 import { Button, Menu, MenuItem } from '@mui/material';
+import { PiStudentFill } from 'react-icons/pi';
+import { FaChalkboardTeacher } from 'react-icons/fa';
 
 
 // Define drawer width
@@ -236,7 +238,8 @@ export default function PermanentDrawerLeft() {
           <ListItem disablePadding>
             <ListItemButton onClick={handleClick}>
               <ListItemIcon>
-                <InboxIcon />
+                <PiStudentFill />
+
               </ListItemIcon>
               <ListItemText primary="Student" />
             </ListItemButton>
@@ -258,7 +261,7 @@ export default function PermanentDrawerLeft() {
           <ListItem disablePadding>
             <ListItemButton onClick={handleMailClick}>
               <ListItemIcon>
-                <InboxIcon />
+              <FaChalkboardTeacher />
               </ListItemIcon>
               <ListItemText primary="Teacher" />
             </ListItemButton>

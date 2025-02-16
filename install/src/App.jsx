@@ -43,7 +43,7 @@ function App() {
 
     <StudentProvider>
      <Routes>
-    <Route path='/home' element={<Dashboard/>}/>
+    <Route path='/dashboard' element={<Dashboard/>}/>
     
     <Route path="/student-registration" element={<StudentRegistrationForm />} />
     <Route path="/student-list" element={<StudentListForm />} />  
