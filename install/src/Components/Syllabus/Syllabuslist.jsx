@@ -7,7 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { useStudentContext } from './StudentContext';
+import { useStudentContext } from '../Student/StudentContext';
 import Dashboard from '../Dashboard/Dashboard';
 import { NavLink } from 'react-router-dom';
 
