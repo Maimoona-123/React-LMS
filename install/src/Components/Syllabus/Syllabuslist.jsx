@@ -1,19 +1,12 @@
+import { Box, Paper, styled, Table, TableBody, TableCell, tableCellClasses, TableContainer, TableHead, TableRow } from "@mui/material";
+import { useStudentContext } from "../Student/StudentContext";
+import { NavLink } from "react-router-dom";
+import Dashboard from "../Dashboard/Dashboard";
 
-import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import { useStudentContext } from '../Student/StudentContext';
-import Dashboard from '../Dashboard/Dashboard';
-import { NavLink } from 'react-router-dom';
-
+// Styled table cell and row
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
+    backgroundColor: "purple",
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
@@ -25,43 +18,66 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(odd)': {
     backgroundColor: theme.palette.action.hover,
   },
-  // hide last border
   '&:last-child td, &:last-child th': {
     border: 0,
-  },
+  }
 }));
 
+const Subjectlist = () => {
+  const { students } = useStudentContext();  // Assuming the context holds 'students' now.
 
-
- function Syllabuslist() {
-    const {syllabus} = useStudentContext()
   return (
-    <>
-    <Dashboard/>
-    <h1>Syllabus List.    <span><NavLink to='/syllabusform'><button style={{width:'75px',height:'40px',backgroundColor:'green',color:'white',border:'2px solid green'}}>ADD</button></NavLink></span></h1>
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            
-            <StyledTableCell align="right">Subject Name</StyledTableCell>
-            <StyledTableCell align="right">Class</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {syllabus.map((row) => (
-            <StyledTableRow key={row.name}>
-              
-              <StyledTableCell align="right">{row.syllabusname}</StyledTableCell>
-              <StyledTableCell align="right">{row.syllabusclass}</StyledTableCell>
-              {/* <StyledTableCell align="right">{row.carbs}</StyledTableCell> */}
-              
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-    </>
+    <Box sx={{ border: "2px solid pink", display: "flex", flexDirection: "column", alignItems: "flex-start", height: "100vh", paddingTop: "80px", paddingX: "20px" }}>
+      <Dashboard />
+      
+      <TableContainer component={Paper} sx={{ maxHeight: "70vh", overflowY: "auto", width: "100%" }}>
+        <div style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+          width: "100%",
+          padding: "10px 20px"
+        }}>
+          <h1>Register Syllabus List</h1>
+          <NavLink to='/student-registration'>
+            <button style={{
+              width: '75px',
+              height: '40px',
+              backgroundColor: 'purple',
+              borderColor: "transparent",
+              borderRadius: "20px",
+              color: 'white',
+              border: '2px solid green',
+              cursor: "pointer"
+            }}>
+              ADD
+            </button>
+          </NavLink>
+        </div>
+
+        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell align="left"> ID</StyledTableCell>
+              <StyledTableCell align="left">Syllabus</StyledTableCell>
+              <StyledTableCell align="left">Class Name</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {students && students.map((student, index) => (
+              <StyledTableRow key={index}>
+                <StyledTableCell align="left">{student.id}</StyledTableCell>
+                <StyledTableCell align="left">{student.firstName}</StyledTableCell>
+                <StyledTableCell align="left">{student.lastName}</StyledTableCell>
+                <StyledTableCell align="left">{student.email}</StyledTableCell>
+              </StyledTableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Box>
   );
-}
-export default Syllabuslist;
+};
+
+export default Subjectlist;

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useStudentContext } from '../Student/StudentContext';
-import { Box, Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField } from '@mui/material';
+import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import Dashboard from '../Dashboard/Dashboard';
 
 function StudentRegistrationForm() {
@@ -121,18 +121,19 @@ function StudentRegistrationForm() {
             />
           </Box>
 
-          <FormControl style={styles.radioGroupWrapper}>
-            <FormLabel id="gender-radio-group-label">Gender</FormLabel>
-            <RadioGroup
-              aria-labelledby="gender-radio-group-label"
+          {/* Gender Dropdown */}
+          <FormControl fullWidth style={styles.inputWrapper}>
+            <InputLabel id="gender-select-label">Gender</InputLabel>
+            <Select
+              labelId="gender-select-label"
               value={selectedGender}
               onChange={(e) => setSelectedGender(e.target.value)}
-              name="radio-buttons-group"
+              label="Gender"
             >
-              <FormControlLabel value="female" control={<Radio />} label="Female" />
-              <FormControlLabel value="male" control={<Radio />} label="Male" />
-              <FormControlLabel value="other" control={<Radio />} label="Other" />
-            </RadioGroup>
+              <MenuItem value="female">Female</MenuItem>
+              <MenuItem value="male">Male</MenuItem>
+              <MenuItem value="other">Other</MenuItem>
+            </Select>
           </FormControl>
 
           <Button type="submit" style={styles.submitButton}>
@@ -176,9 +177,6 @@ const styles = {
   },
   textField: {
     fontSize: '14px', // Smaller font size for text fields
-  },
-  radioGroupWrapper: {
-    marginBottom: '20px',
   },
   submitButton: {
     backgroundColor: 'purple',

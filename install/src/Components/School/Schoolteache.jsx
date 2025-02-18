@@ -3,7 +3,7 @@ import { useStudentContext } from '../Student/StudentContext';
 import { Box, Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField } from '@mui/material';
 import Dashboard from '../Dashboard/Dashboard';
 
-function TeacherRegistration() {
+function Schoolteache() {
   const { addTeacher } = useStudentContext(); // Access the addStudent function from context
   const [TeacherName, setStudentName] = useState('');
   const [lastName, setlastName] = useState('');
@@ -152,4 +152,4 @@ const styles = {
   },
 };
 
-export default TeacherRegistration;
+export default Schoolteache;

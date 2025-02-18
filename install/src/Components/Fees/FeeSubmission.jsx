@@ -91,7 +91,7 @@ const FeeSubmission = () => {
       </FormControl>
       <br />
       </div>
-      <Button  type='submit'  fullWidth style={{backgroundColor:'green',color:'white',width:'41%'}}>Register</Button>
+      <Button  type='submit'  fullWidth style={{backgroundColor:'purple',color:'white',width:'41%'}}>Register</Button>
       
    
 

@@ -1,128 +1,154 @@
-
 import { useState } from 'react';
-import { useStudentContext } from './StudentContext';
-import { Box, Button,  FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField} from '@mui/material';
+import { useStudentContext } from '../Student/StudentContext';
+import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import Dashboard from '../Dashboard/Dashboard';
 
-function StudentRegistrationForm() {
-  const { addStudent } = useStudentContext(); // Access the addStudent function from context
-  const [studentName, setStudentName] = useState('');
+function TeacherRegistration() {
+  const { addTeacher } = useStudentContext(); // Access the addTeacher function from context
+  const [TeacherName, setStudentName] = useState('');
   const [lastName, setlastName] = useState('');
-  const [studentEmail, setstudentEmail] = useState('');
-  const [studentClass, setstudentclass] = useState('');
-
-
-
-//   const [studentAge, setStudentAge] = useState('');
+  const [TeacherEmail, setstudentEmail] = useState('');
+  const [TeacherClass, setstudentclass] = useState('');
+  const [selectedGender, setSelectedGender] = useState(''); // State for selected gender
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const newStudent = {
-      name: studentName,
-      last : lastName,
-      email : studentEmail,
-      class : studentClass,
-    //   age: studentAge,
-
+    const newTeacher = {
+      name: TeacherName,
+      last: lastName,
+      email: TeacherEmail,
+      class: TeacherClass,
+      gender: selectedGender, // Add gender information
     };
-    addStudent(newStudent); // Add the student to the context
+    addTeacher(newTeacher); // Add the teacher to the context
     setStudentName('');
-    // setStudentAge('');
-    setlastName('')
-    setstudentEmail('')
-    setstudentclass('')
+    setlastName('');
+    setstudentEmail('');
+    setstudentclass('');
+    setSelectedGender('');
   };
-   
 
-  return(
+  return (
     <>
-    <Dashboard/>
-  <form onSubmit={handleSubmit} >
-    <div>
-        <h1> Student Registration form</h1>
-    </div>
+      <Dashboard />
+      <div style={styles.pageWrapper}>
+        <form onSubmit={handleSubmit} style={styles.formWrapper}>
+          <h1 style={styles.heading}>Teacher Registration Form</h1>
 
+          <Box sx={{ width: 500, maxWidth: '100%' }} style={styles.inputWrapper}>
+            <TextField
+              fullWidth
+              label="Teacher Name"
+              id="first-name"
+              required
+              type="text"
+              value={TeacherName}
+              onChange={(e) => setStudentName(e.target.value)}
+              style={styles.textField}
+            />
+          </Box>
 
-    <div style={{display:'flex',justifyContent:'center',alignItems:'center',flexWrap:'wrap'}}>
+          <Box sx={{ width: 500, maxWidth: '100%' }} style={styles.inputWrapper}>
+            <TextField
+              fullWidth
+              label="Last Name"
+              id="last-name"
+              required
+              type="text"
+              value={lastName}
+              onChange={(e) => setlastName(e.target.value)}
+              style={styles.textField}
+            />
+          </Box>
 
-    <Box sx={{ width: 500, maxWidth: '100%' }}>
-      <TextField fullWidth label="Firstname" id="fullWidth" required
-      type="text"
-        value={studentName}
-        onChange={(e) => setStudentName(e.target.value)}
-      
-      
-      />
-    </Box>
-    </div>
-    <br />
-    <br />
-  <div style={{display:'flex',justifyContent:'center',alignItems:'center',flexWrap:'wrap'}}>
-  <Box sx={{ width: 500, maxWidth: '100%' }}>
-      <TextField fullWidth label="Lastname" id="fullWidth" required
-     type='text'
-    value={lastName}
-    onChange={(e) => setlastName(e.target.value)}
-  
-      
-      />
-    </Box>
-  </div>
+          <Box sx={{ width: 500, maxWidth: '100%' }} style={styles.inputWrapper}>
+            <TextField
+              fullWidth
+              label="Email"
+              id="email"
+              required
+              type="email"
+              value={TeacherEmail}
+              onChange={(e) => setstudentEmail(e.target.value)}
+              style={styles.textField}
+            />
+          </Box>
 
-  <br />
-    <br />
-  <div style={{display:'flex',justifyContent:'center',alignItems:'center'  ,flexWrap:'wrap'}}>
-  <Box sx={{ width: 500, maxWidth: '100%' }}>
-      <TextField fullWidth label="Email" id="fullWidth" required type='email'
-      
-      value={studentEmail}
-      onChange={(e) => setstudentEmail(e.target.value)}
-      
-      />
-    </Box>
-  </div>
+          <Box sx={{ width: 500, maxWidth: '100%' }} style={styles.inputWrapper}>
+            <TextField
+              fullWidth
+              label="Class"
+              id="class"
+              required
+              value={TeacherClass}
+              onChange={(e) => setstudentclass(e.target.value)}
+              style={styles.textField}
+            />
+          </Box>
 
-  <br />
-    <br />
-  <div style={{display:'flex',justifyContent:'center',alignItems:'center'  ,flexWrap:'wrap'}}>
-  <Box sx={{ width: 500, maxWidth: '100%' }}>
-      <TextField fullWidth label="Class" id="fullWidth" required
-        value={studentClass}
-        onChange={(e) => setstudentclass(e.target.value)}
-      
-      
-      />
-    </Box>
-  </div>
-  <br />
-  <br />
-  <FormControl style={{marginRight:'400px'}}>
-  <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
-  <RadioGroup
-    aria-labelledby="demo-radio-buttons-group-label"
-    defaultValue="female"
-    name="radio-buttons-group"
-  >
-    <FormControlLabel value="female" control={<Radio />} label="Female" />
-    <FormControlLabel value="male" control={<Radio />} label="Male" />
-    <FormControlLabel value="other" control={<Radio />} label="Other" />
-  </RadioGroup>
-  <br />
-  <br />
-  <Button  type='submit'   style={{backgroundColor:'purple',color:'white',width:'200%'}}>Register</Button>
-  
-</FormControl>
+          <FormControl fullWidth style={styles.inputWrapper}>
+            <InputLabel id="gender-select-label">Gender</InputLabel>
+            <Select
+              labelId="gender-select-label"
+              id="gender-select"
+              value={selectedGender}
+              onChange={(e) => setSelectedGender(e.target.value)}
+              label="Gender"
+              required
+            >
+              <MenuItem value="female">Female</MenuItem>
+              <MenuItem value="male">Male</MenuItem>
+              <MenuItem value="other">Other</MenuItem>
+            </Select>
+          </FormControl>
 
-
-</form>
- 
-    
+          <Button type="submit" style={styles.submitButton}>
+            Register
+          </Button>
+        </form>
+      </div>
     </>
-  )
-  
+  );
 }
 
+// Inline style for layout and appearance
+const styles = {
+  pageWrapper: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'flex-start', // Align to the top of the page
+    height: '100vh',
+    backgroundColor: '#f4f4f4',
+    paddingTop: '20px', // Padding to give space from the top
+  },
+  formWrapper: {
+    padding: '20px',
+    border: '2px solid purple', // Purple border around the form
+    borderRadius: '8px',
+    backgroundColor: 'white',
+    width: '100%',
+    maxWidth: '600px',
+    boxSizing: 'border-box',
+    fontSize: '14px', // Smaller font size
+  },
+  heading: {
+    textAlign: 'center',
+    marginBottom: '15px',
+    fontSize: '30px', // Adjusted heading font size
+  },
+  inputWrapper: {
+    marginBottom: '15px', // Increased margin for better spacing
+  },
+  textField: {
+    fontSize: '14px', // Smaller font size for text fields
+  },
+  submitButton: {
+    backgroundColor: 'purple',
+    color: 'white',
+    width: '100%',
+    padding: '10px 0',
+    fontSize: '16px', // Smaller font size for the button
+  },
+};
 
-
-export default StudentRegistrationForm;
-
+export default TeacherRegistration;

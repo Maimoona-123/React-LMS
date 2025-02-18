@@ -1,11 +1,9 @@
 import { Box, Paper, styled, Table, TableBody, TableCell, tableCellClasses, TableContainer, TableHead, TableRow } from "@mui/material";
-import  {useStudentContext}  from "../Student/StudentContext"
+import { useStudentContext } from "../Student/StudentContext";
 import { NavLink } from "react-router-dom";
 import Dashboard from "../Dashboard/Dashboard";
 
-
-
-
+// Styled table cell and row
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: "purple",
@@ -20,97 +18,69 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(odd)': {
     backgroundColor: theme.palette.action.hover,
   },
-  // hide last border
   '&:last-child td, &:last-child th': {
     border: 0,
   }
-}))
+}));
 
-const TeacherList = () => {
-const {teachers} = useStudentContext();
-return (
- <Box sx={{border:"2px solid green", display:"flex", alignItems:"flex-start", height:"auto", paddingTop:"80px",paddingX:"20px"
- }}>
- <Dashboard/>
- 
- <TableContainer component={Paper} >
- <div style={{ 
-display: "flex", 
-flexDirection: "row", 
-justifyContent: "space-between", 
-alignItems: "center", 
-width: "100%", 
-padding: "10px 20px"
-}}>
-<h1 >
-  Registered Teachers List Table
-</h1>
-<NavLink to='/teacher-regestration'>
-  <button style={{
-    width: '75px', 
-    height: '40px', 
-    backgroundColor: 'purple',
-    borderColor:"transparent",
-    borderRadius:"20px",
-    color: 'white', 
-    border: '2px solid green',
-    cursor: "pointer"
-  }}>
-    ADD
-  </button>
-</NavLink>
-</div>
+const ClassList = () => {
+  const { students } = useStudentContext();  // Assuming the context holds 'students' now.
 
-    <Table sx={{ minWidth: 700, }} aria-label="customized table">
-      <TableHead >
-        <TableRow >
-     
+  return (
+    <Box sx={{ border: "2px solid purple", display: "flex", flexDirection: "column", alignItems: "flex-start", height: "100vh", paddingTop: "80px", paddingX: "20px" }}>
+      <Dashboard />
+      
+      <TableContainer component={Paper} sx={{ maxHeight: "70vh", overflowY: "auto", width: "100%" }}>
+        <div style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+          width: "100%",
+          padding: "10px 20px"
+        }}>
+          <h1>Register Teacher List</h1>
+          <NavLink to='/student-registration'>
+            <button style={{
+              width: '75px',
+              height: '40px',
+              backgroundColor: 'purple',
+              borderColor: "transparent",
+              borderRadius: "20px",
+              color: 'white',
+              border: '2px solid green',
+              cursor: "pointer"
+            }}>
+              ADD
+            </button>
+          </NavLink>
+        </div>
 
-          
-          <StyledTableCell align="left">User Id</StyledTableCell>
-          
-          <StyledTableCell align="left">First Name</StyledTableCell>
-          <StyledTableCell align="left">Last Name</StyledTableCell>
-          {/* <StyledTableCell align="right">Last Name</StyledTableCell> */}
+        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell align="left"> ID</StyledTableCell>
+              <StyledTableCell align="left">First Name</StyledTableCell>
+              <StyledTableCell align="left">Last Name</StyledTableCell>
+              <StyledTableCell align="left">Email</StyledTableCell>
+              <StyledTableCell align="left">Phone</StyledTableCell>
 
-          <StyledTableCell align="left">Email</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {students && students.map((student, index) => (
+              <StyledTableRow key={index}>
+                <StyledTableCell align="left">{student.id}</StyledTableCell>
+                <StyledTableCell align="left">{student.firstName}</StyledTableCell>
+                <StyledTableCell align="left">{student.lastName}</StyledTableCell>
+                <StyledTableCell align="left">{student.email}</StyledTableCell>
+              </StyledTableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Box>
+  );
+};
 
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        
-      {teachers.map((e)=>{
-              return(
-                <>
-                 <StyledTableRow >
-
-            <StyledTableCell ></StyledTableCell>
-            <StyledTableCell align='right'>{e.name}</StyledTableCell>
-            <StyledTableCell align='right'>{e.last}</StyledTableCell>
-            {/* <StyledTableCell align='right'>{e.last}</StyledTableCell> */}
-
-            <StyledTableCell align='right'>{e.email}</StyledTableCell>
-
-
-
-
-                   
-
-                 </StyledTableRow>
-                
-                </>
-              )
-                
-              
-            })
-          
-        }
-      </TableBody>
-    </Table>
-  </TableContainer>
- 
-  </Box>
-)
-}
-
-export default TeacherList;
+export default ClassList;

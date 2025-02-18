@@ -1,123 +1,3 @@
-// // Update the imports at the top of Dashboard.js
-// import { useNavigate } from 'react-router-dom'; // Import useNavigate for programmatic navigation
-
-// export default function Dashboard() {
-//   const navigate = useNavigate(); // Initialize useNavigate hook
-
-//   const handleClick = (event) => {
-//     setAnchorEl(event.currentTarget);
-//   };
-
-//   const handleMailClick = (event) => {
-//     setMailAnchorEl(event.currentTarget);
-//   };
-
-//   // Add similar handlers for other dropdowns...
-
-//   const handleClose = () => {
-//     setAnchorEl(null);
-//     setMailAnchorEl(null);
-//     setsubjectAnchorEl(null);
-//     setsyllabusAnchorEl(null);
-//     setschoolAnchorEl(null);
-//     setclassAnchorEl(null);
-//     setfeesAnchorEl(null);
-//     setaddmissionformAnchorEl(null);
-//   };
-
-//   const handleLinkClick = (path) => {
-//     navigate(path); // Use navigate to programmatically redirect
-//     handleClose(); // Close the menu on link click
-//   };
-
-//   return (
-//     <Box sx={{ display: 'flex' }}>
-//       <CssBaseline />
-//       <AppBar
-//         position="fixed"
-//         sx={{
-//           width: "100%",
-//           zIndex: (theme) => theme.zIndex.drawer + 1,
-//           color: "white",
-//           background: "linear-gradient(to right, purple, violet ,pink)"
-//         }}
-//       >
-//         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-//           <Typography variant="h6" noWrap component="div">
-//             Learning Management System
-//           </Typography>
-//           <Button variant="contained" sx={{ backgroundColor: "white", color: "purple" }}>SignOut</Button>
-//         </Toolbar>
-//       </AppBar>
-//       <Drawer
-//         sx={{
-//           width: drawerWidth,
-//           flexShrink: 0,
-//           '& .MuiDrawer-paper': {
-//             width: drawerWidth,
-//             boxSizing: 'border-box',
-//             color: 'white',
-//             background: 'linear-gradient(to right, purple, pink)'
-//           },
-//         }}
-//         variant="permanent"
-//         anchor="left"
-//       >
-//         <Toolbar />
-//         <Divider />
-//         <List>
-//           <ListItem disablePadding>
-//             <ListItemButton onClick={handleClick}>
-//               <ListItemIcon>
-//                 <PiStudentFill />
-//               </ListItemIcon>
-//               <ListItemText primary="Student" />
-//             </ListItemButton>
-//             <Menu
-//               anchorEl={anchorEl}
-//               open={open}
-//               onClose={handleClose}
-//             >
-//               <MenuItem onClick={() => handleLinkClick("/student-registration")}>Student Registration Form</MenuItem>
-//               <MenuItem onClick={() => handleLinkClick("/student-list")}>Student List Form</MenuItem>
-//             </Menu>
-//           </ListItem>
-
-//           {/* Same for other dropdowns */}
-//           <ListItem disablePadding>
-//             <ListItemButton onClick={handleMailClick}>
-//               <ListItemIcon>
-//                 <FaChalkboardTeacher />
-//               </ListItemIcon>
-//               <ListItemText primary="Teacher" />
-//             </ListItemButton>
-//             <Menu
-//               anchorEl={mailAnchorEl}
-//               open={mailOpen}
-//               onClose={handleClose}
-//             >
-//               <MenuItem onClick={() => handleLinkClick("/teacher-regestration")}>Teacher Registration</MenuItem>
-//               <MenuItem onClick={() => handleLinkClick("/teacher-list")}>Teacher List</MenuItem>
-//             </Menu>
-//           </ListItem>
-
-//           {/* Repeat this for other menus */}
-//         </List>
-//         <Divider />
-//       </Drawer>
-//       <Box
-//         component="main"
-//         sx={{ display: "flex", flexDirection: "row", justifyContent: "center", height: "100vh", maxWidth: "80%" }}
-//       >
-//         {/* Your content here */}
-//       </Box>
-//     </Box>
-//   );
-// }
-
-
-
-
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -132,35 +12,40 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { Button, Menu, MenuItem } from '@mui/material';
 import { PiStudentFill } from 'react-icons/pi';
-import { FaChalkboardTeacher } from 'react-icons/fa';
+import { FaAddressBook, FaChalkboardTeacher, FaSchool } from 'react-icons/fa';
+import { GrNotes } from 'react-icons/gr';
+import { IoHomeOutline } from 'react-icons/io5';
+import { FaMoneyBill1 } from 'react-icons/fa6';
 
 
 // Define drawer width
 const drawerWidth = 240;
 
+
 export default function PermanentDrawerLeft() {
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mailAnchorEl, setMailAnchorEl] = React.useState(null);
   const [subjectAnchorEl, setsubjectAnchorEl] = React.useState(null)
-   const [syllabusAnchorEl,setsyllabusAnchorEl] = React.useState(null)
-   const [schoolAnchorEl, setschoolAnchorEl] = React.useState(null)
-   const [classAnchorEl,setclassAnchorEl]  = React.useState(null);
+  const [syllabusAnchorEl,setsyllabusAnchorEl] = React.useState(null)
+  const [schoolAnchorEl, setschoolAnchorEl] = React.useState(null)
+  const [classAnchorEl,setclassAnchorEl]  = React.useState(null);
    const [feesAnchorEl,setfeesAnchorEl] = React.useState(null);
    const [addmissionformAnchorEl,setaddmissionformAnchorEl] =React.useState(null)
-
    
-  const open = Boolean(anchorEl);
-  const mailOpen = Boolean(mailAnchorEl);
-  const subjectOpen = Boolean(subjectAnchorEl);
-  const syllabusOpen = Boolean(syllabusAnchorEl);
-  const schoolOpen = Boolean(schoolAnchorEl)
-  const classOpen = Boolean(classAnchorEl) 
-  const feesOpen = Boolean(feesAnchorEl)
+   
+   const open = Boolean(anchorEl);
+   const mailOpen = Boolean(mailAnchorEl);
+   const subjectOpen = Boolean(subjectAnchorEl);
+   const syllabusOpen = Boolean(syllabusAnchorEl);
+   const schoolOpen = Boolean(schoolAnchorEl)
+   const classOpen = Boolean(classAnchorEl) 
+   const feesOpen = Boolean(feesAnchorEl)
   const addmissionOpen = Boolean(addmissionformAnchorEl)
-
+  
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -171,25 +56,25 @@ export default function PermanentDrawerLeft() {
   const handlesubjectclick = (event) =>{
     setsubjectAnchorEl(event.currentTarget)
   }
-   const handlesyllabusclick = (event)=>{
+  const handlesyllabusclick = (event)=>{
     setsyllabusAnchorEl(event.currentTarget)
-   }
-   const handleschoolclick = (event)=>{
+  }
+  const handleschoolclick = (event)=>{
     setschoolAnchorEl(event.currentTarget)
-   }
-   const handleclassclick = (event)=>{
+  }
+  const handleclassclick = (event)=>{
     setclassAnchorEl(event.currentTarget)
-   }
-   const handlefeeclick = (event)=>{
+  }
+  const handlefeeclick = (event)=>{
     setfeesAnchorEl(event.currentTarget)
-   }
-   const handleaddmissionclick= (event)=>{
+  }
+  const handleaddmissionclick= (event)=>{
     setaddmissionformAnchorEl(event.currentTarget)
    } 
    
-
-  const handleClose = () => {
-    setAnchorEl(null);
+   
+   const handleClose = () => {
+     setAnchorEl(null);
     setMailAnchorEl(null);
     setsubjectAnchorEl(null);
     setsyllabusAnchorEl(null);
@@ -197,35 +82,40 @@ export default function PermanentDrawerLeft() {
     setclassAnchorEl(null);
     setfeesAnchorEl(null);
   };
+  
+  const logOut = () =>{
+    localStorage.clear();
+    navigate("/")
+  }
 
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar
-        position="fixed"
-        sx={{
-          width: "100%",
-          zIndex: (theme) => theme.zIndex.drawer + 1,
-          color: "white",
-          background: "linear-gradient(to right, purple, violet ,pink)"
-        }}
-      >
-        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-           <Typography variant="h6" noWrap component="div">
-             Learning Management System
-           </Typography>
-           <Button variant="contained" sx={{ backgroundColor: "white", color: "purple" }}>SignOut</Button>
-         </Toolbar>
-       </AppBar>
-       <Drawer
+  position="fixed"
+  sx={{
+    width: "100%",  // Full width
+    zIndex: (theme) => theme.zIndex.drawer + 1,  // Ensures AppBar is above the drawer
+    color: "white",
+    background: "linear-gradient(to right, purple, violet ,pink)"
+  }}
+>
+  <Toolbar sx={{display:"flex",justifyContent:"space-between"}}>
+    <Typography variant="h6" noWrap component="div">
+      Educon's Learning System
+    </Typography>
+    <Button onClick={logOut} variant='contained'sx={{backgroundColor:"white", color:"purple"}}>SignOut</Button>
+  </Toolbar>
+</AppBar>
+      <Drawer
         sx={{
           width: drawerWidth,
           flexShrink: 0,
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
-            color: 'white',
-            background: 'linear-gradient(to right, purple, pink)'
+            background: 'linear-gradient(to right, purple ,pink)',
+            color: 'white'
           },
         }}
         variant="permanent"
@@ -239,7 +129,6 @@ export default function PermanentDrawerLeft() {
             <ListItemButton onClick={handleClick}>
               <ListItemIcon>
                 <PiStudentFill />
-
               </ListItemIcon>
               <ListItemText primary="Student" />
             </ListItemButton>
@@ -261,7 +150,7 @@ export default function PermanentDrawerLeft() {
           <ListItem disablePadding>
             <ListItemButton onClick={handleMailClick}>
               <ListItemIcon>
-              <FaChalkboardTeacher />
+                <FaChalkboardTeacher />
               </ListItemIcon>
               <ListItemText primary="Teacher" />
             </ListItemButton>
@@ -287,7 +176,7 @@ export default function PermanentDrawerLeft() {
           <ListItem disablePadding>
             <ListItemButton onClick={handlesubjectclick}>
               <ListItemIcon>
-                <InboxIcon />
+                <FaAddressBook />
               </ListItemIcon>
               <ListItemText primary="Subject" />
             </ListItemButton>
@@ -312,7 +201,7 @@ export default function PermanentDrawerLeft() {
           <ListItem disablePadding>
             <ListItemButton onClick={handlesyllabusclick}>
               <ListItemIcon>
-                <InboxIcon />
+                <GrNotes />
               </ListItemIcon>
               <ListItemText primary="Syllabus" />
             </ListItemButton>
@@ -337,7 +226,7 @@ export default function PermanentDrawerLeft() {
           <ListItem disablePadding>
             <ListItemButton onClick={handleschoolclick}>
               <ListItemIcon>
-                <InboxIcon />
+                <FaSchool />
               </ListItemIcon>
               <ListItemText primary="School" />
             </ListItemButton>
@@ -362,7 +251,7 @@ export default function PermanentDrawerLeft() {
           <ListItem disablePadding>
             <ListItemButton onClick={handleclassclick}>
               <ListItemIcon>
-                <InboxIcon />
+                <IoHomeOutline />
               </ListItemIcon>
               <ListItemText primary="Class" />
             </ListItemButton>
@@ -387,7 +276,7 @@ export default function PermanentDrawerLeft() {
           <ListItem disablePadding>
             <ListItemButton onClick={handlefeeclick}>
               <ListItemIcon>
-                <InboxIcon />
+                <FaMoneyBill1 />
               </ListItemIcon>
               <ListItemText primary="Fees" />
             </ListItemButton>
@@ -442,9 +331,10 @@ export default function PermanentDrawerLeft() {
       </Drawer>
       <Box
         component="main"
-        sx={{ display: "flex", flexDirection: "row", justifyContent: "center", height: "100vh", maxWidth: "80%" }}
+        sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
       >
-        {/* Your content here */}
+        <Toolbar />
+        
       </Box>
     </Box>
   );

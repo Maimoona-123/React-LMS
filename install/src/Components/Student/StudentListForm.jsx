@@ -27,7 +27,7 @@ const StudentList = () => {
   const { students } = useStudentContext();  // Assuming the context holds 'students' now.
 
   return (
-    <Box sx={{ border: "2px solid green", display: "flex", flexDirection: "column", alignItems: "flex-start", height: "100vh", paddingTop: "80px", paddingX: "20px" }}>
+    <Box sx={{ border: "2px solid pink", display: "flex", flexDirection: "column", alignItems: "flex-start", height: "100vh", paddingTop: "80px", paddingX: "20px" }}>
       <Dashboard />
       
       <TableContainer component={Paper} sx={{ maxHeight: "70vh", overflowY: "auto", width: "100%" }}>
